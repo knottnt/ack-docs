@@ -14,6 +14,7 @@
 package scanner
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -82,15 +83,17 @@ func scanOne(path, service string) (*types.Controller, error) {
 		return nil, fmt.Errorf("collecting CRDs: %w", err)
 	}
 
-	examples, _ := collectExamples(path) // non-fatal if missing
+	examples, _ := collectExamples(path)          // non-fatal if missing
+	adoption, _ := readAdoptionMetadata(path)     // non-fatal if missing
 
 	return &types.Controller{
-		ServiceName: service,
-		Path:        path,
-		Metadata:    metadata,
-		Version:     version,
-		CRDs:        crds,
-		Examples:    examples,
+		ServiceName:      service,
+		Path:             path,
+		Metadata:         metadata,
+		Version:          version,
+		CRDs:             crds,
+		Examples:         examples,
+		AdoptionMetadata: adoption,
 	}, nil
 }
 
@@ -192,4 +195,16 @@ func extractKind(content []byte) string {
 	}
 	yaml.Unmarshal(content, &r)
 	return r.Kind
+}
+
+func readAdoptionMetadata(controllerPath string) (*types.AdoptionMetadata, error) {
+	data, err := os.ReadFile(filepath.Join(controllerPath, "adoption-metadata.json"))
+	if err != nil {
+		return nil, err
+	}
+	var m types.AdoptionMetadata
+	if err := json.Unmarshal(data, &m); err != nil {
+		return nil, err
+	}
+	return &m, nil
 }

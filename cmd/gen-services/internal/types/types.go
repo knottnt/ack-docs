@@ -15,12 +15,13 @@ package types
 
 // Controller holds data collected from scanning a single controller repo.
 type Controller struct {
-	ServiceName string
-	Path        string
-	Metadata    *Metadata
-	Version     string
-	CRDs        []CRDFile
-	Examples    []ExampleFile
+	ServiceName      string
+	Path             string
+	Metadata         *Metadata
+	Version          string
+	CRDs             []CRDFile
+	Examples         []ExampleFile
+	AdoptionMetadata *AdoptionMetadata
 }
 
 // Metadata mirrors the metadata.yaml in controller repos.
@@ -89,16 +90,17 @@ type ServiceRef struct {
 
 // Resource represents a CRD in the API reference.
 type Resource struct {
-	Kind         string  `json:"kind"`
-	Plural       string  `json:"plural"`
-	Singular     string  `json:"singular"`
-	Group        string  `json:"group"`
-	Version      string  `json:"version"`
-	Scope        string  `json:"scope"`
-	Description  string  `json:"description,omitempty"`
-	Path         string  `json:"path"`
-	SpecFields   []Field `json:"specFields"`
-	StatusFields []Field `json:"statusFields"`
+	Kind         string        `json:"kind"`
+	Plural       string        `json:"plural"`
+	Singular     string        `json:"singular"`
+	Group        string        `json:"group"`
+	Version      string        `json:"version"`
+	Scope        string        `json:"scope"`
+	Description  string        `json:"description,omitempty"`
+	Path         string        `json:"path"`
+	SpecFields   []Field       `json:"specFields"`
+	StatusFields []Field       `json:"statusFields"`
+	Adoption     *AdoptionInfo `json:"adoption,omitempty"`
 }
 
 // Field represents a CRD field in spec or status.
@@ -116,4 +118,34 @@ type Example struct {
 	Name string `json:"name"`
 	Kind string `json:"kind"`
 	YAML string `json:"yaml"`
+}
+
+// AdoptionMetadata mirrors the adoption-metadata.json file produced by the
+// code-generator in each controller repo.
+type AdoptionMetadata struct {
+	Service   string             `json:"service"`
+	Resources []AdoptionResource `json:"resources"`
+}
+
+// AdoptionResource describes the adoption fields for a single CRD.
+type AdoptionResource struct {
+	Kind              string          `json:"kind"`
+	Adoptable         bool            `json:"adoptable"`
+	PrimaryIdentifier *AdoptionField  `json:"primaryIdentifier,omitempty"`
+	AdditionalKeys    []AdoptionField `json:"additionalKeys,omitempty"`
+}
+
+// AdoptionField describes a single field used during resource adoption.
+type AdoptionField struct {
+	FieldName string `json:"fieldName"`
+	Location  string `json:"location"`
+	Type      string `json:"type"`
+}
+
+// AdoptionInfo is the output format embedded in api-reference-index.json
+// for each resource.
+type AdoptionInfo struct {
+	Adoptable         bool            `json:"adoptable"`
+	PrimaryIdentifier *AdoptionField  `json:"primaryIdentifier,omitempty"`
+	AdditionalKeys    []AdoptionField `json:"additionalKeys,omitempty"`
 }

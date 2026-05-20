@@ -1,6 +1,6 @@
 .PHONY: build run clean
 
-CONTROLLERS_DIR ?= $(HOME)/source/github.com/aws-controllers-k8s
+CONTROLLERS_DIR ?= $(HOME)/go/src/github.com/aws-controllers-k8s
 SERVICES_OUTPUT ?= ../../website/src/data/services.json
 API_REF_OUTPUT  ?= ../../website/src/data/api-reference-index.json
 

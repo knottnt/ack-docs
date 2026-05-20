@@ -114,9 +114,14 @@ func generateAPIReference(controllers []types.Controller, path string) error {
 	serviceMap := make(map[string][]types.Resource)
 	exampleMap := make(map[string][]types.Example)
 	versionMap := make(map[string]string)
+	adoptionMap := make(map[string]*types.AdoptionMetadata)
 
 	for _, c := range controllers {
 		versionMap[c.ServiceName] = c.Version
+
+		if c.AdoptionMetadata != nil {
+			adoptionMap[c.ServiceName] = c.AdoptionMetadata
+		}
 
 		for _, crd := range c.CRDs {
 			if r := parseCRD(crd.Content, c.ServiceName); r != nil {
@@ -138,6 +143,10 @@ func generateAPIReference(controllers []types.Controller, path string) error {
 		sort.Slice(resources, func(i, j int) bool {
 			return resources[i].Kind < resources[j].Kind
 		})
+
+		if adoption := adoptionMap[name]; adoption != nil {
+			mergeAdoptionInfo(resources, adoption)
+		}
 
 		examples := exampleMap[name]
 		sort.Slice(examples, func(i, j int) bool {
@@ -326,6 +335,25 @@ func countExamples(services []types.ServiceRef) int {
 		n += len(s.Examples)
 	}
 	return n
+}
+
+func mergeAdoptionInfo(resources []types.Resource, adoption *types.AdoptionMetadata) {
+	lookup := make(map[string]*types.AdoptionResource, len(adoption.Resources))
+	for i := range adoption.Resources {
+		lookup[adoption.Resources[i].Kind] = &adoption.Resources[i]
+	}
+
+	for i := range resources {
+		ar, ok := lookup[resources[i].Kind]
+		if !ok {
+			continue
+		}
+		resources[i].Adoption = &types.AdoptionInfo{
+			Adoptable:         ar.Adoptable,
+			PrimaryIdentifier: ar.PrimaryIdentifier,
+			AdditionalKeys:    ar.AdditionalKeys,
+		}
+	}
 }
 
 func writeJSON(path string, v any) error {

@@ -4,8 +4,8 @@
     "displayName": "Amazon SageMaker",
     "description": "Amazon SageMaker",
     "maintenancePhase": "General Availability",
-    "version": "1.2.16",
-    "crdCount": 23,
+    "version": "1.7.4",
+    "crdCount": 26,
     "crdNames": [
       "App",
       "DataQualityJobDefinition",
@@ -15,6 +15,7 @@
       "FeatureGroup",
       "HyperParameterTuningJob",
       "InferenceComponent",
+      "LabelingJob",
       "Model",
       "ModelBiasJobDefinition",
       "ModelExplainabilityJobDefinition",
@@ -27,6 +28,8 @@
       "Pipeline",
       "PipelineExecution",
       "ProcessingJob",
+      "Project",
+      "Space",
       "TrainingJob",
       "TransformJob",
       "UserProfile"
@@ -40,16 +43,18 @@
     "displayName": "Amazon EC2",
     "description": "Amazon Elastic Cloud Compute",
     "maintenancePhase": "General Availability",
-    "version": "1.4.1",
-    "crdCount": 18,
+    "version": "1.12.0",
+    "crdCount": 20,
     "crdNames": [
       "CapacityReservation",
       "DHCPOptions",
+      "EgressOnlyInternetGateway",
       "ElasticIPAddress",
       "FlowLog",
       "Instance",
       "InternetGateway",
       "LaunchTemplate",
+      "ManagedPrefixList",
       "NATGateway",
       "NetworkACL",
       "RouteTable",
@@ -67,11 +72,35 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/ec2-controller"
   },
   {
+    "name": "apigateway",
+    "displayName": "Amazon apigateway",
+    "description": "Amazon API Gateway",
+    "maintenancePhase": "General Availability",
+    "version": "1.2.3",
+    "crdCount": 11,
+    "crdNames": [
+      "APIIntegrationResponse",
+      "APIKey",
+      "APIMethodResponse",
+      "Authorizer",
+      "Deployment",
+      "Integration",
+      "Method",
+      "Resource",
+      "RestAPI",
+      "Stage",
+      "VPCLink"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/apigateway-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/apigateway-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/apigateway-controller"
+  },
+  {
     "name": "rds",
     "displayName": "Amazon RDS",
     "description": "Amazon Relational Database Service",
     "maintenancePhase": "General Availability",
-    "version": "1.6.0",
+    "version": "1.7.12",
     "crdCount": 10,
     "crdNames": [
       "DBCluster",
@@ -94,7 +123,7 @@
     "displayName": "Amazon APIGWv2",
     "description": "Amazon API Gateway",
     "maintenancePhase": "General Availability",
-    "version": "1.0.23",
+    "version": "1.2.3",
     "crdCount": 9,
     "crdNames": [
       "API",
@@ -112,37 +141,38 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/apigatewayv2-controller"
   },
   {
-    "name": "apigateway",
-    "displayName": "Amazon apigateway",
-    "description": "Amazon API Gateway",
+    "name": "elasticache",
+    "displayName": "Amazon ElastiCache",
+    "description": "Amazon ElastiCache",
     "maintenancePhase": "General Availability",
-    "version": "1.1.0",
+    "version": "1.3.4",
     "crdCount": 9,
     "crdNames": [
-      "APIIntegrationResponse",
-      "APIKey",
-      "APIMethodResponse",
-      "Integration",
-      "Method",
-      "Resource",
-      "RestAPI",
-      "Stage",
-      "VPCLink"
+      "CacheCluster",
+      "CacheParameterGroup",
+      "CacheSubnetGroup",
+      "ReplicationGroup",
+      "ServerlessCache",
+      "ServerlessCacheSnapshot",
+      "Snapshot",
+      "User",
+      "UserGroup"
     ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/apigateway-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/apigateway-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/apigateway-controller"
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/elasticache-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/elasticache-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/elasticache-controller"
   },
   {
     "name": "eks",
     "displayName": "Amazon EKS",
     "description": "Amazon Elastic Kubernetes Service",
     "maintenancePhase": "General Availability",
-    "version": "1.9.3",
-    "crdCount": 7,
+    "version": "1.13.0",
+    "crdCount": 8,
     "crdNames": [
       "AccessEntry",
       "Addon",
+      "Capability",
       "Cluster",
       "FargateProfile",
       "IdentityProviderConfig",
@@ -154,11 +184,71 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/eks-controller"
   },
   {
+    "name": "bedrockagentcorecontrol",
+    "displayName": "Amazon Bedrock Agent Core Control",
+    "description": "Amazon Bedrock Agent Core Control",
+    "maintenancePhase": "General Availability",
+    "version": "1.5.0",
+    "crdCount": 7,
+    "crdNames": [
+      "APIKeyCredentialProvider",
+      "AgentRuntime",
+      "AgentRuntimeEndpoint",
+      "Gateway",
+      "GatewayTarget",
+      "Memory",
+      "WorkloadIdentity"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/bedrockagentcorecontrol-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/bedrockagentcorecontrol-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/bedrockagentcorecontrol-controller"
+  },
+  {
+    "name": "cloudfront",
+    "displayName": "Amazon CloudFront",
+    "description": "Amazon CloudFront",
+    "maintenancePhase": "General Availability",
+    "version": "1.3.3",
+    "crdCount": 7,
+    "crdNames": [
+      "CachePolicy",
+      "Distribution",
+      "Function",
+      "OriginAccessControl",
+      "OriginRequestPolicy",
+      "ResponseHeadersPolicy",
+      "VPCOrigin"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/cloudfront-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/cloudfront-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/cloudfront-controller"
+  },
+  {
+    "name": "iam",
+    "displayName": "Amazon IAM",
+    "description": "AWS Identity \u0026 Access Management",
+    "maintenancePhase": "General Availability",
+    "version": "1.6.2",
+    "crdCount": 7,
+    "crdNames": [
+      "Group",
+      "InstanceProfile",
+      "OpenIDConnectProvider",
+      "Policy",
+      "Role",
+      "ServiceLinkedRole",
+      "User"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/iam-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/iam-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/iam-controller"
+  },
+  {
     "name": "lambda",
     "displayName": "Amazon Lambda",
     "description": "AWS Lambda",
     "maintenancePhase": "General Availability",
-    "version": "1.6.1",
+    "version": "1.12.2",
     "crdCount": 7,
     "crdNames": [
       "Alias",
@@ -174,69 +264,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/lambda-controller"
   },
   {
-    "name": "elasticache",
-    "displayName": "Amazon ElastiCache",
-    "description": "Amazon ElastiCache",
-    "maintenancePhase": "Preview",
-    "version": "0.2.3",
-    "crdCount": 7,
-    "crdNames": [
-      "CacheCluster",
-      "CacheParameterGroup",
-      "CacheSubnetGroup",
-      "ReplicationGroup",
-      "Snapshot",
-      "User",
-      "UserGroup"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/elasticache-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/elasticache-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/elasticache-controller"
-  },
-  {
-    "name": "cloudfront",
-    "displayName": "Amazon CloudFront",
-    "description": "Amazon CloudFront",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.9",
-    "crdCount": 6,
-    "crdNames": [
-      "CachePolicy",
-      "Distribution",
-      "Function",
-      "OriginAccessControl",
-      "OriginRequestPolicy",
-      "ResponseHeadersPolicy"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/cloudfront-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/cloudfront-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/cloudfront-controller"
-  },
-  {
-    "name": "iam",
-    "displayName": "Amazon IAM",
-    "description": "AWS Identity \u0026 Access Management",
-    "maintenancePhase": "General Availability",
-    "version": "1.3.19",
-    "crdCount": 6,
-    "crdNames": [
-      "Group",
-      "InstanceProfile",
-      "OpenIDConnectProvider",
-      "Policy",
-      "Role",
-      "User"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/iam-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/iam-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/iam-controller"
-  },
-  {
     "name": "memorydb",
     "displayName": "Amazon MemoryDB",
     "description": "Amazon MemoryDB for Redis",
     "maintenancePhase": "General Availability",
-    "version": "1.0.8",
+    "version": "1.2.0",
     "crdCount": 6,
     "crdNames": [
       "ACL",
@@ -251,28 +283,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/memorydb-controller"
   },
   {
-    "name": "prometheusservice",
-    "displayName": "Amazon AMP",
-    "description": "Amazon Managed Service for Prometheus",
-    "maintenancePhase": "General Availability",
-    "version": "1.2.21",
-    "crdCount": 4,
-    "crdNames": [
-      "AlertManagerDefinition",
-      "LoggingConfiguration",
-      "RuleGroupsNamespace",
-      "Workspace"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/prometheusservice-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/prometheusservice-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/prometheusservice-controller"
-  },
-  {
     "name": "elbv2",
     "displayName": "Amazon ELB",
     "description": "Elastic Load Balancing",
     "maintenancePhase": "General Availability",
-    "version": "1.0.7",
+    "version": "1.3.4",
     "crdCount": 4,
     "crdNames": [
       "Listener",
@@ -285,28 +300,28 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/elbv2-controller"
   },
   {
-    "name": "eventbridge",
-    "displayName": "Amazon EventBridge",
-    "description": "Amazon EventBridge",
+    "name": "kms",
+    "displayName": "Amazon KMS",
+    "description": "AWS Key Management Service",
     "maintenancePhase": "General Availability",
-    "version": "1.0.21",
+    "version": "1.1.1",
     "crdCount": 4,
     "crdNames": [
-      "Archive",
-      "Endpoint",
-      "EventBus",
-      "Rule"
+      "Alias",
+      "Grant",
+      "Key",
+      "ReplicaKey"
     ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/eventbridge-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/eventbridge-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/eventbridge-controller"
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/kms-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/kms-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/kms-controller"
   },
   {
     "name": "sns",
     "displayName": "Amazon SNS",
     "description": "Amazon Simple Notification Service",
     "maintenancePhase": "General Availability",
-    "version": "1.1.9",
+    "version": "1.5.0",
     "crdCount": 4,
     "crdNames": [
       "PlatformApplication",
@@ -319,11 +334,28 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/sns-controller"
   },
   {
+    "name": "quicksight",
+    "displayName": "Amazon QuickSight",
+    "description": "Amazon Quick Sight",
+    "maintenancePhase": "Preview",
+    "version": "0.2.1",
+    "crdCount": 4,
+    "crdNames": [
+      "Analysis",
+      "Dashboard",
+      "DataSet",
+      "DataSource"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/quicksight-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/quicksight-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/quicksight-controller"
+  },
+  {
     "name": "acmpca",
     "displayName": "Amazon ACM PCA",
     "description": "AWS Private Certificate Authority",
     "maintenancePhase": "General Availability",
-    "version": "1.1.1",
+    "version": "1.2.2",
     "crdCount": 3,
     "crdNames": [
       "Certificate",
@@ -335,11 +367,27 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/acmpca-controller"
   },
   {
+    "name": "cloudwatch",
+    "displayName": "Amazon CloudWatch",
+    "description": "Amazon CloudWatch",
+    "maintenancePhase": "General Availability",
+    "version": "1.4.1",
+    "crdCount": 3,
+    "crdNames": [
+      "Dashboard",
+      "MetricAlarm",
+      "MetricStream"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/cloudwatch-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/cloudwatch-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/cloudwatch-controller"
+  },
+  {
     "name": "documentdb",
     "displayName": "Amazon DocumentDB",
     "description": "Amazon DocumentDB",
     "maintenancePhase": "General Availability",
-    "version": "1.0.7",
+    "version": "1.3.0",
     "crdCount": 3,
     "crdNames": [
       "DBCluster",
@@ -355,7 +403,7 @@
     "displayName": "Amazon DynamoDB",
     "description": "Amazon DynamoDB",
     "maintenancePhase": "General Availability",
-    "version": "1.6.1",
+    "version": "1.8.0",
     "crdCount": 3,
     "crdNames": [
       "Backup",
@@ -367,11 +415,27 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/dynamodb-controller"
   },
   {
+    "name": "ecr",
+    "displayName": "Amazon ECR",
+    "description": "Amazon Elastic Container Registry",
+    "maintenancePhase": "General Availability",
+    "version": "1.5.3",
+    "crdCount": 3,
+    "crdNames": [
+      "PullThroughCacheRule",
+      "Repository",
+      "RepositoryCreationTemplate"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/ecr-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/ecr-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/ecr-controller"
+  },
+  {
     "name": "ecs",
     "displayName": "Amazon ECS",
     "description": "Amazon Elastic Container Service",
     "maintenancePhase": "General Availability",
-    "version": "1.0.8",
+    "version": "1.2.1",
     "crdCount": 3,
     "crdNames": [
       "Cluster",
@@ -383,91 +447,43 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/ecs-controller"
   },
   {
-    "name": "efs",
-    "displayName": "Amazon EFS",
-    "description": "Amazon Elastic File System",
+    "name": "kafka",
+    "displayName": "Amazon MSK",
+    "description": "Amazon Managed Streaming for Apache Kafka",
     "maintenancePhase": "General Availability",
-    "version": "1.0.7",
+    "version": "1.2.0",
     "crdCount": 3,
     "crdNames": [
-      "AccessPoint",
-      "FileSystem",
-      "MountTarget"
+      "Cluster",
+      "Configuration",
+      "ServerlessCluster"
     ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/efs-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/efs-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/efs-controller"
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/kafka-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/kafka-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/kafka-controller"
   },
   {
-    "name": "kms",
-    "displayName": "Amazon KMS",
-    "description": "AWS Key Management Service",
+    "name": "organizations",
+    "displayName": "Amazon Organizations",
+    "description": "AWS Organizations",
     "maintenancePhase": "General Availability",
-    "version": "1.0.24",
+    "version": "1.0.11",
     "crdCount": 3,
     "crdNames": [
-      "Alias",
-      "Grant",
-      "Key"
+      "Account",
+      "Organization",
+      "OrganizationalUnit"
     ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/kms-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/kms-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/kms-controller"
-  },
-  {
-    "name": "networkfirewall",
-    "displayName": "Amazon NetworkFirewall",
-    "description": "Network Firewall",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.6",
-    "crdCount": 3,
-    "crdNames": [
-      "Firewall",
-      "FirewallPolicy",
-      "RuleGroup"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/networkfirewall-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/networkfirewall-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/networkfirewall-controller"
-  },
-  {
-    "name": "ssm",
-    "displayName": "Amazon SSM",
-    "description": "Systems Manager",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.5",
-    "crdCount": 3,
-    "crdNames": [
-      "Document",
-      "PatchBaseline",
-      "ResourceDataSync"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/ssm-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/ssm-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/ssm-controller"
-  },
-  {
-    "name": "wafv2",
-    "displayName": "Amazon WAF",
-    "description": "AWS Web Application Firewall",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.6",
-    "crdCount": 3,
-    "crdNames": [
-      "IPSet",
-      "RuleGroup",
-      "WebACL"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/wafv2-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/wafv2-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/wafv2-controller"
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/organizations-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/organizations-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/organizations-controller"
   },
   {
     "name": "route53",
     "displayName": "Amazon Route53",
     "description": "Amazon Route53",
-    "maintenancePhase": "Preview",
-    "version": "0.0.25",
+    "maintenancePhase": "General Availability",
+    "version": "1.3.3",
     "crdCount": 3,
     "crdNames": [
       "HealthCheck",
@@ -479,11 +495,43 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/route53-controller"
   },
   {
+    "name": "wafv2",
+    "displayName": "Amazon WAF",
+    "description": "AWS Web Application Firewall",
+    "maintenancePhase": "General Availability",
+    "version": "1.3.2",
+    "crdCount": 3,
+    "crdNames": [
+      "IPSet",
+      "RuleGroup",
+      "WebACL"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/wafv2-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/wafv2-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/wafv2-controller"
+  },
+  {
+    "name": "backup",
+    "displayName": "Amazon Backup",
+    "description": "AWS Backup",
+    "maintenancePhase": "Preview",
+    "version": "0.1.1",
+    "crdCount": 3,
+    "crdNames": [
+      "BackupPlan",
+      "BackupSelection",
+      "BackupVault"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/backup-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/backup-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/backup-controller"
+  },
+  {
     "name": "athena",
     "displayName": "Amazon Athena",
     "description": "Amazon Athena",
     "maintenancePhase": "General Availability",
-    "version": "1.0.6",
+    "version": "1.2.3",
     "crdCount": 2,
     "crdNames": [
       "PreparedStatement",
@@ -498,7 +546,7 @@
     "displayName": "Amazon AutoScaling",
     "description": "AWS Auto Scaling",
     "maintenancePhase": "General Availability",
-    "version": "1.1.2",
+    "version": "1.2.3",
     "crdCount": 2,
     "crdNames": [
       "ScalableTarget",
@@ -509,26 +557,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/applicationautoscaling-controller"
   },
   {
-    "name": "bedrockagentcorecontrol",
-    "displayName": "Amazon Bedrock Agent Core Control",
-    "description": "Amazon Bedrock Agent Core Control",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.0",
-    "crdCount": 2,
-    "crdNames": [
-      "AgentRuntime",
-      "AgentRuntimeEndpoint"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/bedrockagentcorecontrol-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/bedrockagentcorecontrol-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/bedrockagentcorecontrol-controller"
-  },
-  {
     "name": "cloudtrail",
     "displayName": "Amazon CloudTrail",
     "description": "AWS CloudTrail",
     "maintenancePhase": "General Availability",
-    "version": "1.0.21",
+    "version": "1.2.1",
     "crdCount": 2,
     "crdNames": [
       "EventDataStore",
@@ -539,26 +572,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/cloudtrail-controller"
   },
   {
-    "name": "ecr",
-    "displayName": "Amazon ECR",
-    "description": "Amazon Elastic Container Registry",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.26",
-    "crdCount": 2,
-    "crdNames": [
-      "PullThroughCacheRule",
-      "Repository"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/ecr-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/ecr-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/ecr-controller"
-  },
-  {
     "name": "emrcontainers",
     "displayName": "Amazon EMRContainers",
     "description": "Amazon EMR on EKS",
     "maintenancePhase": "General Availability",
-    "version": "1.0.19",
+    "version": "1.3.0",
     "crdCount": 2,
     "crdNames": [
       "JobRun",
@@ -569,71 +587,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/emrcontainers-controller"
   },
   {
-    "name": "keyspaces",
-    "displayName": "Amazon Keyspaces",
-    "description": "Amazon Keyspaces",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.7",
-    "crdCount": 2,
-    "crdNames": [
-      "Keyspace",
-      "Table"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/keyspaces-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/keyspaces-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/keyspaces-controller"
-  },
-  {
-    "name": "kafka",
-    "displayName": "Amazon MSK",
-    "description": "Amazon Managed Streaming for Apache Kafka",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.9",
-    "crdCount": 2,
-    "crdNames": [
-      "Cluster",
-      "Configuration"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/kafka-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/kafka-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/kafka-controller"
-  },
-  {
-    "name": "organizations",
-    "displayName": "Amazon Organizations",
-    "description": "AWS Organizations",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.6",
-    "crdCount": 2,
-    "crdNames": [
-      "Account",
-      "OrganizationalUnit"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/organizations-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/organizations-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/organizations-controller"
-  },
-  {
-    "name": "ram",
-    "displayName": "Amazon RAM",
-    "description": "Resource Access Manager",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.5",
-    "crdCount": 2,
-    "crdNames": [
-      "Permission",
-      "ResourceShare"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/ram-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/ram-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/ram-controller"
-  },
-  {
     "name": "route53resolver",
     "displayName": "Amazon Route53Resolver",
     "description": "Amazon Route53 Resolver",
     "maintenancePhase": "General Availability",
-    "version": "1.0.8",
+    "version": "1.2.1",
     "crdCount": 2,
     "crdNames": [
       "ResolverEndpoint",
@@ -644,26 +602,26 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/route53resolver-controller"
   },
   {
-    "name": "sfn",
-    "displayName": "Amazon Step-Functions",
-    "description": "AWS Step Functions",
+    "name": "ssm",
+    "displayName": "Amazon SSM",
+    "description": "Systems Manager",
     "maintenancePhase": "General Availability",
-    "version": "1.0.22",
+    "version": "1.0.9",
     "crdCount": 2,
     "crdNames": [
-      "Activity",
-      "StateMachine"
+      "Document",
+      "PatchBaseline"
     ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/sfn-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/sfn-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/sfn-controller"
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/ssm-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/ssm-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/ssm-controller"
   },
   {
     "name": "codeartifact",
     "displayName": "Amazon codeArtifact",
     "description": "CodeArtifact",
     "maintenancePhase": "General Availability",
-    "version": "1.0.6",
+    "version": "1.2.1",
     "crdCount": 2,
     "crdNames": [
       "Domain",
@@ -674,11 +632,26 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/codeartifact-controller"
   },
   {
+    "name": "opensearchserverless",
+    "displayName": "Amazon opensearchserverless",
+    "description": "Amazon OpenSearch Serverless",
+    "maintenancePhase": "Preview",
+    "version": "0.4.0",
+    "crdCount": 2,
+    "crdNames": [
+      "Collection",
+      "SecurityPolicy"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/opensearchserverless-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/opensearchserverless-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/opensearchserverless-controller"
+  },
+  {
     "name": "acm",
     "displayName": "Amazon ACM",
     "description": "AWS Certificate Manager",
     "maintenancePhase": "General Availability",
-    "version": "1.0.7",
+    "version": "1.3.6",
     "crdCount": 1,
     "crdNames": [
       "Certificate"
@@ -692,7 +665,7 @@
     "displayName": "Amazon Bedrock",
     "description": "Amazon Bedrock",
     "maintenancePhase": "General Availability",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "crdCount": 1,
     "crdNames": [
       "InferenceProfile"
@@ -702,39 +675,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/bedrock-controller"
   },
   {
-    "name": "bedrockagent",
-    "displayName": "Amazon Bedrock Agents",
-    "description": "Agents for Amazon Bedrock",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.0",
-    "crdCount": 1,
-    "crdNames": [
-      "Agent"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/bedrockagent-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/bedrockagent-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/bedrockagent-controller"
-  },
-  {
-    "name": "cloudwatch",
-    "displayName": "Amazon CloudWatch",
-    "description": "Amazon CloudWatch",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.6",
-    "crdCount": 1,
-    "crdNames": [
-      "MetricAlarm"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/cloudwatch-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/cloudwatch-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/cloudwatch-controller"
-  },
-  {
     "name": "cloudwatchlogs",
     "displayName": "Amazon CloudWatch Logs",
     "description": "Amazon CloudWatch Logs",
     "maintenancePhase": "General Availability",
-    "version": "1.0.7",
+    "version": "1.2.4",
     "crdCount": 1,
     "crdNames": [
       "LogGroup"
@@ -748,7 +693,7 @@
     "displayName": "Amazon Cognito Identity Provider",
     "description": "Amazon Cognito Identity Provider",
     "maintenancePhase": "General Availability",
-    "version": "1.0.6",
+    "version": "1.2.2",
     "crdCount": 1,
     "crdNames": [
       "UserPool"
@@ -758,25 +703,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/cognitoidentityprovider-controller"
   },
   {
-    "name": "ecrpublic",
-    "displayName": "Amazon ECR Public",
-    "description": "Amazon Elastic Container Registry Public",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.7",
-    "crdCount": 1,
-    "crdNames": [
-      "Repository"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/ecrpublic-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/ecrpublic-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/ecrpublic-controller"
-  },
-  {
     "name": "kinesis",
     "displayName": "Amazon Kinesis",
     "description": "Amazon Kinesis",
     "maintenancePhase": "General Availability",
-    "version": "1.0.8",
+    "version": "1.2.4",
     "crdCount": 1,
     "crdNames": [
       "Stream"
@@ -790,7 +721,7 @@
     "displayName": "Amazon MQ",
     "description": "Amazon MQ",
     "maintenancePhase": "General Availability",
-    "version": "1.0.6",
+    "version": "1.3.0",
     "crdCount": 1,
     "crdNames": [
       "Broker"
@@ -804,7 +735,7 @@
     "displayName": "Amazon OpenSearch",
     "description": "Amazon OpenSearch Service",
     "maintenancePhase": "General Availability",
-    "version": "1.0.7",
+    "version": "1.2.1",
     "crdCount": 1,
     "crdNames": [
       "Domain"
@@ -818,7 +749,7 @@
     "displayName": "Amazon Pipes",
     "description": "Amazon EventBridge Pipes",
     "maintenancePhase": "General Availability",
-    "version": "1.0.18",
+    "version": "1.1.2",
     "crdCount": 1,
     "crdNames": [
       "Pipe"
@@ -828,25 +759,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/pipes-controller"
   },
   {
-    "name": "recyclebin",
-    "displayName": "Amazon Recycle Bin",
-    "description": "Amazon EBS Recycle Bin",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.6",
-    "crdCount": 1,
-    "crdNames": [
-      "Rule"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/recyclebin-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/recyclebin-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/recyclebin-controller"
-  },
-  {
     "name": "s3",
     "displayName": "Amazon S3",
     "description": "Amazon Simple Storage Service",
     "maintenancePhase": "General Availability",
-    "version": "1.0.28",
+    "version": "1.6.0",
     "crdCount": 1,
     "crdNames": [
       "Bucket"
@@ -856,39 +773,11 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/s3-controller"
   },
   {
-    "name": "s3control",
-    "displayName": "Amazon S3 Control",
-    "description": "AWS S3 Control",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.5",
-    "crdCount": 1,
-    "crdNames": [
-      "AccessPoint"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/s3control-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/s3control-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/s3control-controller"
-  },
-  {
-    "name": "ses",
-    "displayName": "Amazon SES",
-    "description": "Simple Email Service",
-    "maintenancePhase": "General Availability",
-    "version": "1.0.6",
-    "crdCount": 1,
-    "crdNames": [
-      "ConfigurationSet"
-    ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/ses-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/ses-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/ses-controller"
-  },
-  {
     "name": "sqs",
     "displayName": "Amazon SQS",
     "description": "Amazon Simple Queue Service",
     "maintenancePhase": "General Availability",
-    "version": "1.1.9",
+    "version": "1.5.0",
     "crdCount": 1,
     "crdNames": [
       "Queue"
@@ -902,7 +791,7 @@
     "displayName": "Amazon SecretsManager",
     "description": "AWS Secrets Manager",
     "maintenancePhase": "General Availability",
-    "version": "1.0.5",
+    "version": "1.2.4",
     "crdCount": 1,
     "crdNames": [
       "Secret"
@@ -912,31 +801,99 @@
     "githubRepo": "https://github.com/aws-controllers-k8s/secretsmanager-controller"
   },
   {
-    "name": "amg",
-    "displayName": "Amazon AMG",
-    "description": "Amazon Managed Grafana",
+    "name": "bedrockagent",
+    "displayName": "Amazon Bedrock Agents",
+    "description": "Agents for Amazon Bedrock",
+    "maintenancePhase": "Preview",
+    "version": "0.1.2",
+    "crdCount": 1,
+    "crdNames": [
+      "Agent"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/bedrockagent-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/bedrockagent-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/bedrockagent-controller"
+  },
+  {
+    "name": "dsql",
+    "displayName": "Amazon DSQL",
+    "description": "Amazon Aurora DSQL",
     "maintenancePhase": "Preview",
     "version": "0.0.0-non-release-version",
     "crdCount": 1,
     "crdNames": [
-      "Workspace"
+      "Cluster"
     ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/amg-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/amg-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/amg-controller"
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/dsql-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/dsql-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/dsql-controller"
   },
   {
-    "name": "elasticsearchservice",
-    "displayName": "Amazon Elasticsearch",
-    "description": "Amazon Elasticsearch Service",
-    "maintenancePhase": "Deprecated",
-    "version": "0.0.2",
+    "name": "firehose",
+    "displayName": "Amazon Firehose",
+    "description": "Amazon Kinesis Data Firehose",
+    "maintenancePhase": "Preview",
+    "version": "0.1.0",
     "crdCount": 1,
     "crdNames": [
-      "ElasticsearchDomain"
+      "DeliveryStream"
     ],
-    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/elasticsearchservice-chart",
-    "imageRepo": "public.ecr.aws/aws-controllers-k8s/elasticsearchservice-controller",
-    "githubRepo": "https://github.com/aws-controllers-k8s/elasticsearchservice-controller"
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/firehose-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/firehose-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/firehose-controller"
+  },
+  {
+    "name": "mwaa",
+    "displayName": "Amazon MWAA",
+    "description": "Amazon Managed Workflows for Apache Airflow",
+    "maintenancePhase": "Preview",
+    "version": "0.0.0-non-release-version",
+    "crdCount": 1,
+    "crdNames": [
+      "Environment"
+    ],
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/mwaa-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/mwaa-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/mwaa-controller"
+  },
+  {
+    "name": "networkmanager",
+    "displayName": "AWS Network Manager",
+    "description": "AWS Network Manager",
+    "maintenancePhase": "Preview",
+    "version": "0.0.0-non-release-version",
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/networkmanager-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/networkmanager-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/networkmanager-controller"
+  },
+  {
+    "name": "autoscaling",
+    "displayName": "Amazon AutoScaling",
+    "description": "Amazon EC2 Auto Scaling",
+    "maintenancePhase": "Preview",
+    "version": "0.0.0-non-release-version",
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/autoscaling-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/autoscaling-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/autoscaling-controller"
+  },
+  {
+    "name": "bautoscaling",
+    "displayName": "Amazon AutoScaling",
+    "description": "Amazon EC2 Auto Scaling",
+    "maintenancePhase": "Preview",
+    "version": "0.0.0-non-release-version",
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/bautoscaling-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/bautoscaling-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/bautoscaling-controller"
+  },
+  {
+    "name": "dms",
+    "displayName": "Amazon DMS",
+    "description": "AWS Database Migration Service",
+    "maintenancePhase": "Preview",
+    "version": "0.0.0-non-release-version",
+    "chartRepo": "oci://public.ecr.aws/aws-controllers-k8s/dms-chart",
+    "imageRepo": "public.ecr.aws/aws-controllers-k8s/dms-controller",
+    "githubRepo": "https://github.com/aws-controllers-k8s/dms-controller"
   }
 ]

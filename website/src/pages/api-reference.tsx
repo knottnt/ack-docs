@@ -16,6 +16,18 @@ interface Field {
   itemType?: string; // For arrays - the type of items
 }
 
+interface AdoptionFieldEntry {
+  fieldName: string;
+  location: string; // "spec", "status", or "metadata"
+  type: string;     // "name", "id", or "arn"
+}
+
+interface AdoptionInfo {
+  adoptable: boolean;
+  primaryIdentifier?: AdoptionFieldEntry;
+  additionalKeys?: AdoptionFieldEntry[];
+}
+
 interface ResourceEntry {
   kind: string;
   plural: string;
@@ -27,6 +39,7 @@ interface ResourceEntry {
   path: string;
   specFields: Field[];
   statusFields: Field[];
+  adoption?: AdoptionInfo;
 }
 
 interface ExampleEntry {
@@ -204,6 +217,73 @@ function FieldRow({ field }: { field: Field }) {
   );
 }
 
+function AdoptionSection({ adoption, kind }: { adoption: AdoptionInfo; kind: string }) {
+  if (!adoption.adoptable) {
+    return (
+      <div className={styles.section}>
+        <h4>Adoption</h4>
+        <p className={styles.noFields}>This resource does not support adoption.</p>
+      </div>
+    );
+  }
+
+  const fields: { fieldName: string; location: string; required: boolean }[] = [];
+  if (adoption.primaryIdentifier) {
+    fields.push({ ...adoption.primaryIdentifier, required: true });
+  }
+  if (adoption.additionalKeys) {
+    for (const key of adoption.additionalKeys) {
+      fields.push({ ...key, required: true });
+    }
+  }
+
+  const annotationValue = fields.length > 0
+    ? JSON.stringify(Object.fromEntries(fields.map(f => [f.fieldName, '<value>'])))
+    : '{}';
+
+  return (
+    <div className={styles.section}>
+      <h4>Adoption</h4>
+      <p className={styles.adoptionHelp}>
+        To adopt an existing AWS resource into ACK management, apply the following annotation with the resource's identifier:
+      </p>
+      <div className={styles.adoptionFields}>
+        <div className={styles.fieldList}>
+          <div className={styles.fieldListHeader}>
+            <span className={styles.fieldListHeaderName}>Field</span>
+            <span className={styles.fieldListHeaderType}>Location</span>
+            <span className={styles.fieldListHeaderDesc}>Role</span>
+          </div>
+          {fields.map((f) => (
+            <div key={f.fieldName} className={styles.fieldItem}>
+              <div className={styles.fieldItemRow}>
+                <div className={styles.fieldItemName}>
+                  <span className={styles.expandSpacer} />
+                  <code className={styles.fieldNameCode}>{f.fieldName}</code>
+                  <span className={styles.requiredTag}>required</span>
+                </div>
+                <div className={styles.fieldItemType}>
+                  <span className={styles.typeBadge}>{f.location}</span>
+                </div>
+                <div className={styles.fieldItemDesc}>
+                  {f.fieldName === adoption.primaryIdentifier?.fieldName ? 'Primary identifier' : 'Additional key'}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={styles.adoptionExample}>
+        <p className={styles.adoptionExampleLabel}>Annotation:</p>
+        <CodeBlock language="yaml">{`metadata:
+  annotations:
+    services.k8s.aws/adoption-policy: adopt
+    services.k8s.aws/adoption-fields: '${annotationValue}'`}</CodeBlock>
+      </div>
+    </div>
+  );
+}
+
 function FieldTable({ fields, title }: { fields: Field[]; title: string }) {
   if (!fields || fields.length === 0) {
     return (
@@ -320,6 +400,10 @@ function ResourceDetail({ resource, serviceName, onBack, onHome }: { resource: R
         <div className={styles.description}>
           <p><TruncatableDescription text={resource.description} limit={300} /></p>
         </div>
+      )}
+
+      {resource.adoption && (
+        <AdoptionSection adoption={resource.adoption} kind={resource.kind} />
       )}
 
       <FieldTable fields={resource.specFields} title="Spec Fields" />

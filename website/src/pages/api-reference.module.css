@@ -1738,3 +1738,25 @@
 .exampleCodeBlock code {
   font-size: 0.8rem !important;
 }
+
+/* Adoption Section */
+.adoptionHelp {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.adoptionFields {
+  margin-bottom: 1rem;
+}
+
+.adoptionExample {
+  margin-top: 1rem;
+}
+
+.adoptionExampleLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 0.5rem;
+}
