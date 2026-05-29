@@ -1743,7 +1743,26 @@
 .adoptionHelp {
   color: var(--ifm-color-emphasis-700);
   font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.adoptionNote {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.85rem;
+  font-style: italic;
   margin-bottom: 1rem;
+}
+
+.optionalTag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 3px;
+  padding: 1px 4px;
+  margin-left: 6px;
+  white-space: nowrap;
 }
 
 .adoptionFields {

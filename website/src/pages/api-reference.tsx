@@ -20,10 +20,13 @@ interface AdoptionFieldEntry {
   fieldName: string;
   location: string; // "spec", "status", or "metadata"
   type: string;     // "name", "id", or "arn"
+  required: boolean;
+  note?: string;
 }
 
 interface AdoptionInfo {
   adoptable: boolean;
+  note?: string;
   primaryIdentifier?: AdoptionFieldEntry;
   additionalKeys?: AdoptionFieldEntry[];
 }
@@ -227,18 +230,19 @@ function AdoptionSection({ adoption, kind }: { adoption: AdoptionInfo; kind: str
     );
   }
 
-  const fields: { fieldName: string; location: string; required: boolean }[] = [];
+  const fields: AdoptionFieldEntry[] = [];
   if (adoption.primaryIdentifier) {
-    fields.push({ ...adoption.primaryIdentifier, required: true });
+    fields.push(adoption.primaryIdentifier);
   }
   if (adoption.additionalKeys) {
     for (const key of adoption.additionalKeys) {
-      fields.push({ ...key, required: true });
+      fields.push(key);
     }
   }
 
-  const annotationValue = fields.length > 0
-    ? JSON.stringify(Object.fromEntries(fields.map(f => [f.fieldName, '<value>'])))
+  const requiredFields = fields.filter(f => f.required);
+  const annotationValue = requiredFields.length > 0
+    ? JSON.stringify(Object.fromEntries(requiredFields.map(f => [f.fieldName, '<value>'])))
     : '{}';
 
   return (
@@ -247,6 +251,9 @@ function AdoptionSection({ adoption, kind }: { adoption: AdoptionInfo; kind: str
       <p className={styles.adoptionHelp}>
         To adopt an existing AWS resource into ACK management, apply the following annotation with the resource's identifier:
       </p>
+      {adoption.note && (
+        <p className={styles.adoptionNote}>{adoption.note}</p>
+      )}
       <div className={styles.adoptionFields}>
         <div className={styles.fieldList}>
           <div className={styles.fieldListHeader}>
@@ -260,13 +267,17 @@ function AdoptionSection({ adoption, kind }: { adoption: AdoptionInfo; kind: str
                 <div className={styles.fieldItemName}>
                   <span className={styles.expandSpacer} />
                   <code className={styles.fieldNameCode}>{f.fieldName}</code>
-                  <span className={styles.requiredTag}>required</span>
+                  {f.required ? (
+                    <span className={styles.requiredTag}>required</span>
+                  ) : (
+                    <span className={styles.optionalTag}>optional</span>
+                  )}
                 </div>
                 <div className={styles.fieldItemType}>
                   <span className={styles.typeBadge}>{f.location}</span>
                 </div>
                 <div className={styles.fieldItemDesc}>
-                  {f.fieldName === adoption.primaryIdentifier?.fieldName ? 'Primary identifier' : 'Additional key'}
+                  {f.note || (f.fieldName === adoption.primaryIdentifier?.fieldName ? 'Primary identifier' : 'Additional key')}
                 </div>
               </div>
             </div>

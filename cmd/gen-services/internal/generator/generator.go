@@ -350,6 +350,7 @@ func mergeAdoptionInfo(resources []types.Resource, adoption *types.AdoptionMetad
 		}
 		resources[i].Adoption = &types.AdoptionInfo{
 			Adoptable:         ar.Adoptable,
+			Note:              ar.Note,
 			PrimaryIdentifier: ar.PrimaryIdentifier,
 			AdditionalKeys:    ar.AdditionalKeys,
 		}

@@ -131,6 +131,7 @@ type AdoptionMetadata struct {
 type AdoptionResource struct {
 	Kind              string          `json:"kind"`
 	Adoptable         bool            `json:"adoptable"`
+	Note              string          `json:"note,omitempty"`
 	PrimaryIdentifier *AdoptionField  `json:"primaryIdentifier,omitempty"`
 	AdditionalKeys    []AdoptionField `json:"additionalKeys,omitempty"`
 }
@@ -140,12 +141,15 @@ type AdoptionField struct {
 	FieldName string `json:"fieldName"`
 	Location  string `json:"location"`
 	Type      string `json:"type"`
+	Required  bool   `json:"required"`
+	Note      string `json:"note,omitempty"`
 }
 
 // AdoptionInfo is the output format embedded in api-reference-index.json
 // for each resource.
 type AdoptionInfo struct {
 	Adoptable         bool            `json:"adoptable"`
+	Note              string          `json:"note,omitempty"`
 	PrimaryIdentifier *AdoptionField  `json:"primaryIdentifier,omitempty"`
 	AdditionalKeys    []AdoptionField `json:"additionalKeys,omitempty"`
 }

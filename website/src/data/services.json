@@ -43,7 +43,7 @@
     "displayName": "Amazon EC2",
     "description": "Amazon Elastic Cloud Compute",
     "maintenancePhase": "General Availability",
-    "version": "1.12.0",
+    "version": "1.13.0",
     "crdCount": 20,
     "crdNames": [
       "CapacityReservation",
@@ -791,7 +791,7 @@
     "displayName": "Amazon SecretsManager",
     "description": "AWS Secrets Manager",
     "maintenancePhase": "General Availability",
-    "version": "1.2.4",
+    "version": "1.3.0",
     "crdCount": 1,
     "crdNames": [
       "Secret"
